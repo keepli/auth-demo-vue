@@ -1,6 +1,7 @@
 <template>
   <div class="dashboard-container">
-    <div class="dashboard-text">name: {{ name }}</div>
+    <div class="dashboard-text">用户: {{ name }}</div>
+    <div class="dashboard-text">角色: {{ roleNames }}</div>
   </div>
 </template>
 
@@ -11,8 +12,18 @@ export default {
   name: 'Dashboard',
   computed: {
     ...mapGetters([
-      'name'
+      'name',
+      'roles'
     ])
+  },
+  created() {
+    //获取计算函数的值并从角色中取出角色名集合
+    this.roleNames = this.roles.map(obj => {return obj.name})
+  },
+  data() {
+    return {
+      roleNames: []
+    }
   }
 }
 </script>

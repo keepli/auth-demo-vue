@@ -24,6 +24,12 @@ const mutations = {
   },
   SET_AVATAR: (state, avatar) => {
     state.avatar = avatar
+  },
+  SET_ROLES: (state, roles) => {
+    state.roles = roles
+  },
+  SET_PERMISSIONS: (state, permissions) => {
+    state.permissions = permissions
   }
 }
 
@@ -54,10 +60,15 @@ const actions = {
         }
 
         const { username, icon } = data.data.user
-        // 添加角色
+        // 添加角色和权限
+        const roles = data.data.roles
+        const permissions = data.data.permissions
 
         commit('SET_NAME', username)
         commit('SET_AVATAR', icon)
+        commit('SET_ROLES',roles)
+        commit('SET_PERMISSIONS',permissions)
+
         resolve(data)
       }).catch(error => {
         reject(error)
